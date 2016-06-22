@@ -39,12 +39,12 @@ fi
   cat settings_bashrc >> ~/.bashrc
   echo "Setting Bumblebee Bridge to primus"
   cd /etc/bumblebee
-  sudo patch < ./$PWD/disable_0verclock.patch
+  sudo patch < ./$PWD/bridge.patch
   cd -
   ;;
   2) echo "Disabling overclock..."
   cd /etc/bumblebee
-  sudo patch < ./$PWD/bridge.patch
+  sudo patch < ./$PWD/disable_0verclock.patch
   cd -
   echo "Restarting bumblebeed daemon"
   sudo systemctl restart bumblebeed.service
