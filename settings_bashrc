@@ -1,0 +1,11 @@
+# Warning, there clocks are default on Geforce 710m 
+optirun() {
+    local GPUOffset=-10
+    local MemOffset=-1100
+    ({
+        $(which optirun) nvidia-settings -c :8 \
+        -a [gpu:0]/GPUGraphicsClockOffset[2]=$GPUOffset \
+        -a [gpu:0]/GPUMemoryTransferRateOffset[2]=$MemOffset
+    } 2>/dev/null & )
+    $(which optirun) $@
+}
