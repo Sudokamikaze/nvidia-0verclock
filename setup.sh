@@ -28,14 +28,14 @@ case "$choise" in
   cd /etc/bumblebee
   sudo patch < ./$PWD/0verclock.patch
   cd -
-  echo "Do you want to open nvidia settings to check overclocking support? [y/n]"
+  echo "Do you want to open nvidia settings to check overclocking status? [y/n]"
   read check
   if [ $check == "y" ]; then
     optirun nvidia-settings -c :8
   elif [ $check == "n" ]; then
   echo "Done..."
 fi
-  echo "After this script open your bashrc and customize values becouse there values for 710m"
+  echo "After this script open your bashrc and customize values becouse there values are default"
   cat settings_bashrc >> ~/.bashrc
   echo "Setting Bumblebee Bridge to primus"
   cd /etc/bumblebee
