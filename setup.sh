@@ -1,6 +1,14 @@
 #!/bin/bash
 figlet Nvidia
 PWD=$(pwd)
+NVSTAT=$(optirun nvidia-smi | grep GeForce)
+echo "$NVSTAT" | grep -q "GeForce 710M  "
+if [ $? -eq 0 ];then
+  echo "Your videocard supported!"
+else
+  echo "Your videocard is not supported :c"
+  exit 1
+fi
 echo ==================================
 echo "1. Enable overclocking support"
 echo "2. Disable overclocking support"
@@ -39,7 +47,7 @@ fi
   sudo patch < ./$PWD/bridge.patch
   cd -
   echo "Restarting bumblebeed daemon"
-  sudo systemctl restart bumblebeed.service 
+  sudo systemctl restart bumblebeed.service
   echo "Done"
   ;;
   *) echo "Unknown symbol, exiting..."
