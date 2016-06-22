@@ -1,0 +1,8 @@
+--- xorg.conf.nvidia	2016-06-22 04:22:14.639249194 +0300
++++ /etc/bumblebee/xorg.conf.nvidia	2016-06-22 04:03:35.162557942 +0300
+@@ -31,4 +31,5 @@
+     Option "NoLogo" "true"
+     Option "UseEDID" "false"
+     Option "UseDisplayDevice" "none"
++    Option "Coolbits" "8"
+ EndSection

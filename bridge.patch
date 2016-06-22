@@ -1,0 +1,16 @@
+--- bumblebee.conf	2016-06-22 04:37:53.595936480 +0300
++++ /etc/bumblebee/bumblebee.conf	2016-06-22 04:09:39.962565953 +0300
+@@ -27,7 +27,7 @@
+ [optirun]
+ # Acceleration/ rendering bridge, possible values are auto, virtualgl and
+ # primus.
+-Bridge=Auto
++Bridge=primus
+ # The method used for VirtualGL to transport frames between X servers.
+ # Possible values are proxy, jpeg, rgb, xv and yuv.
+ VGLTransport=proxy
+@@ -66,3 +66,4 @@
+ KernelDriver=nouveau
+ PMMethod=auto
+ XorgConfFile=/etc/bumblebee/xorg.conf.nouveau
++
