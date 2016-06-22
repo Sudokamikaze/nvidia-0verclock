@@ -30,9 +30,9 @@ case "$choise" in
   cd -
   echo "Do you want to open nvidia settings to check overclocking support? [y/n]"
   read check
-  if [ $check == y ]; then
+  if [ $check == "y" ]; then
     optirun nvidia-settings -c :8
-  elif [ $check == n ]; then
+  elif [ $check == "n" ]; then
   echo "Done..."
 fi
   echo "After this script open your bashrc and customize values becouse there values for 710m"
