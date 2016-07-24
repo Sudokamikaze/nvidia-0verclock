@@ -32,6 +32,8 @@ case "$choise" in
   read check
   if [ $check == "y" ]; then
     optirun nvidia-settings -c :8
+  elif [ $check == "Y" ]; then
+    optirun nvidia-settings -c :8
   elif [ $check == "n" ]; then
   echo "Done..."
 fi
