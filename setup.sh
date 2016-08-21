@@ -1,6 +1,7 @@
 #!/bin/bash
 figlet Nvidia
-PWD=$(pwd)
+PWD=$(pwd | grep nvidia-0verclock)
+CRDIR=$PWD
 NVSTAT=$(optirun nvidia-smi | grep GeForce)
 echo "$NVSTAT" | grep -q "GeForce 710M  "
 if [ $? -eq 0 ];then
@@ -26,7 +27,7 @@ read choise
 case "$choise" in
   1) echo "Enabling overclock..."
   cd /etc/bumblebee
-  sudo patch < ./$PWD/0verclock.patch
+  sudo patch < ./$CRDIR/0verclock.patch
   cd -
   echo "Do you want to open nvidia settings to check overclocking status? [y/n]"
   read check
@@ -41,12 +42,12 @@ fi
   cat settings_bashrc >> ~/.bashrc
   echo "Setting Bumblebee Bridge to primus"
   cd /etc/bumblebee
-  sudo patch < ./$PWD/bridge.patch
+  sudo patch < ./$CRDIR/bridge.patch
   cd -
   ;;
   2) echo "Disabling overclock..."
   cd /etc/bumblebee
-  sudo patch < ./$PWD/disable_0verclock.patch
+  sudo patch < ./$CRDIR/disable_0verclock.patch
   cd -
   echo "Restarting bumblebeed daemon"
   sudo systemctl restart bumblebeed.service
