@@ -1,4 +1,5 @@
-# Warning, there clocks are default on Geforce 710m 
+# begin
+# Warning, there clocks are default on Geforce 710m
 optirun() {
     local GPUOffset=-10
     local MemOffset=-1100
@@ -9,3 +10,4 @@ optirun() {
     } 2>/dev/null & )
     $(which optirun) $@
 }
+# end

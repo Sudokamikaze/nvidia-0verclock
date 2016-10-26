@@ -32,6 +32,17 @@ function checknvidia {
   fi
 }
 
+function bashop {
+  case "$bashoperation" in
+  remove) echo "Removing lines from ~/.bashrc"
+  sed -i '/# begin/,/# end/d' ~/.bashrc;
+  ;;
+  install) echo "Customize values in your ~/.bashrc if you wan't"
+  cat settings_bashrc >> ~/.bashrc
+  eval $(grep Bridge= /etc/bumblebee/bumblebee.conf)
+esac
+}
+
 figlet Nvidia
 PWD=$(pwd | grep nvidia-0verclock)
 CRDIR=$PWD
@@ -52,9 +63,8 @@ case "$choise" in
   cd /etc/bumblebee
   sudo patch < $CRDIR/0verclock.patch
   cd -
-  echo "After this script open your bashrc and customize values becouse there values are default"
-  cat settings_bashrc >> ~/.bashrc
-  eval $(grep Bridge= /etc/bumblebee/bumblebee.conf)
+  bashoperation=install
+  bashop
   if [ $Bridge == auto ]; then
   echo "Setting Bumblebee Bridge to primus"
   sudo find /etc/bumblebee -name bumblebee.conf -exec sed -i "s/Bridge=auto/Bridge=primus/g" {} \;
@@ -67,6 +77,8 @@ fi
   echo "Restarting bumblebeed daemon"
   sudo systemctl restart bumblebeed.service
   echo "Done"
+  bashoperation=remove
+  bashop
   ;;
   *) echo "Unknown symbol, exiting..."
   ;;
