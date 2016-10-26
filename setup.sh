@@ -69,6 +69,7 @@ fi
   sudo find /etc/bumblebee -name bumblebee.conf -exec sed -i "s/Bridge=auto/Bridge=primus/g" {} \;
 else
   echo "Bridge set to primus already."
+fi
   ;;
   2) echo "Disabling overclock..."
   sudo sed -i '/Option "Coolbits" "8"/d' /etc/bumblebee/xorg.conf.nvidia
