@@ -52,15 +52,6 @@ case "$choise" in
   cd /etc/bumblebee
   sudo patch < $CRDIR/0verclock.patch
   cd -
-  echo "Do you want to open nvidia settings to check overclocking status? [y/n]"
-  read check
-  if [ $check == "y" ]; then
-    optirun nvidia-settings -c :8
-  elif [ $check == "Y" ]; then
-    optirun nvidia-settings -c :8
-  elif [ $check == "n" ]; then
-  echo "Done..."
-fi
   echo "After this script open your bashrc and customize values becouse there values are default"
   cat settings_bashrc >> ~/.bashrc
   eval $(grep Bridge= /etc/bumblebee/bumblebee.conf)
