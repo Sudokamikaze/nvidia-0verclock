@@ -59,10 +59,12 @@ case "$choise" in
 fi
   echo "After this script open your bashrc and customize values becouse there values are default"
   cat settings_bashrc >> ~/.bashrc
+  eval $(grep Bridge= /etc/bumblebee/bumblebee.conf)
+  if [ $Bridge == auto ]; then
   echo "Setting Bumblebee Bridge to primus"
-  cd /etc/bumblebee
-  sudo patch < $CRDIR/bridge.patch
-  cd -
+  sudo find /etc/bumblebee -name bumblebee.conf -exec sed -i "s/Bridge=auto/Bridge=primus/g" {} \;
+else
+  echo "Bridge set to primus already."
   ;;
   2) echo "Disabling overclock..."
   cd /etc/bumblebee
