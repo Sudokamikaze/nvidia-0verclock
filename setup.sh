@@ -1,22 +1,24 @@
 #!/bin/bash
 
 function checkenabled {
-  echo -n "Current status: "
+  case "$choise" in
+  0)
   if grep -q "Coolbits" /etc/bumblebee/xorg.conf.nvidia
   then
     echo "Overclocing enabled"
   else
     echo "Overclocing disabled"
   fi
-}
-
-function checkbefore {
+  ;;
+  1)
   if grep -q "Coolbits" /etc/bumblebee/xorg.conf.nvidia
   then
     echo "Overclocing is already enabled. Exiting..."
   else
     echo " "
   fi
+  ;;
+esac
 }
 
 figlet Nvidia
@@ -35,12 +37,13 @@ echo "1. Enable overclocking support"
 echo "2. Disable overclocking support"
 echo ==================================
 echo -n "Current status: "
+choise=0
 checkenabled
 echo ==================================
 echo -n "Choose an action: "
 read choise
 case "$choise" in
-  1) checkbefore 
+  1) checkenabled
   echo "Enabling overclock..."
   cd /etc/bumblebee
   sudo patch < $CRDIR/0verclock.patch
