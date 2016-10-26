@@ -71,9 +71,7 @@ else
   echo "Bridge set to primus already."
   ;;
   2) echo "Disabling overclock..."
-  cd /etc/bumblebee
-  sudo patch < $CRDIR/disable_0verclock.patch
-  cd -
+  sudo sed -i '/Option "Coolbits" "8"/d' /etc/bumblebee/xorg.conf.nvidia
   echo "Restarting bumblebeed daemon"
   sudo systemctl restart bumblebeed.service
   echo "Done"
