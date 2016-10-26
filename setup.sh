@@ -21,17 +21,21 @@ function checkenabled {
 esac
 }
 
+function checknvidia {
+  NVSTAT=$(optirun nvidia-smi | grep GeForce)
+  echo "$NVSTAT" | grep -q "GeForce 710M  "
+  if [ $? -eq 0 ];then
+    echo "Your videocard supported!"
+  else
+    echo "Your videocard is not supported :c"
+    exit 1
+  fi
+}
+
 figlet Nvidia
 PWD=$(pwd | grep nvidia-0verclock)
 CRDIR=$PWD
-NVSTAT=$(optirun nvidia-smi | grep GeForce)
-echo "$NVSTAT" | grep -q "GeForce 710M  "
-if [ $? -eq 0 ];then
-  echo "Your videocard supported!"
-else
-  echo "Your videocard is not supported :c"
-  exit 1
-fi
+checknvidia
 echo ==================================
 echo "1. Enable overclocking support"
 echo "2. Disable overclocking support"
