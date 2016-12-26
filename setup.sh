@@ -14,6 +14,7 @@ function checkenabled {
   if grep -q "Coolbits" /etc/bumblebee/xorg.conf.nvidia
   then
     echo "Overclocing is already enabled. Exiting..."
+    exit 1
   else
     echo " "
   fi
